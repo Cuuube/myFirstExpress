@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src='./js/vue.js'></script>
+
     <title>首页</title>
 </head>
+
 <body>
-    
+    <div id="app">
+        {{ hello }}
+    </div>
+    <div id="app2">
+        <span v-bind:title="title">hover on me</span>
+        <div v-if="isSeen" v-on:click="toggle">watched me?</div>
+        <ol>
+            <li v-for="theOne in app">{{theOne.appName}}</li>
+            <!--<lista v-for="theOne in app" :value="theOne.appName"></lista>-->
+        </ol>
+        <my-ul :items="app"></my-ul>
+        <input v-model="app[0].appName">
+    </div>
+
 </body>
+<script type="text/javascript" src='./js/myVue.js'></script>
+
 </html>

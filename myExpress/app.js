@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var photos = require('./routes/photos');
+var public = require('./routes/public');
 
 var app = express();
 // view engine setup
@@ -23,6 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/photos', photos);
+app.use('/public', public);
 
 
 

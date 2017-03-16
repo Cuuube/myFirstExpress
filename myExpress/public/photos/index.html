@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>photos</title>
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+
+</head>
+
+<body>
+    <div class="left-menu">
+        <div class="logo"><img src="" alt=""></div>
+        <div class="page-menu">
+            <ul>
+                <li><a href- "../index.html">主页</a></li>
+                <li class="active"><a href- "#">相册</a></li>
+                <li><a href- "#">博客</a></li>
+                <li><a href- "#">其他</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-content" id="photoApp">
+
+        <upload-content></upload-content>
+
+
+        <div class="main-show">
+
+            <photos v-for="picture in pictures" :src="picture.url" :img-name="picture.filename"></photos>
+
+        </div>
+
+        <show-img :src="showImgURL" :seen="isSeen"></show-img>
+    </div>
+
+    <form action="javascript:;" enctype='multipart/form-data' id="upload" method='post' class="hidden">
+        <input type="file" name="files" id="uploadinput">
+        <button>submit</button>
+    </form>
+
+
+
+
+
+</body>
+<script type="text/javascript" src='./js/vue.js'></script>
+<script type="text/javascript" src="../javascripts/jquery-3.1.1.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+<script type="text/javascript" src='./js/myVue.js'></script>
+
+</html>
