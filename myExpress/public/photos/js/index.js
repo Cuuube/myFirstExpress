@@ -13,6 +13,10 @@ function init() {
     $('form button').on('click', function() {
         //let files = $('#upload')[0];
         //console.log(files);
+        if (!$('.upload-content .fileName').val()) {
+            alert('图片格式错误！');
+            return;
+        }
         let data = new FormData($('#upload')[0]);
         console.log(data);
         $.ajax({
@@ -24,17 +28,26 @@ function init() {
             contentType: false,
             processData: false,
             success: function(data) {
-                if (200 === data.code) {
-                    console.log('success');
-                    console.log(data);
-                    //$('.main-show').append('<img src="' + data.msg.url + '">');
-                    // $('.main-show').append('<div class="img"><img src="' + data.msg.url + '"></div>');
-                    // addHander();
-                } else {
-                    console.log(false);
-                    console.log(data);
-
+                //if (200 === data.code) {
+                console.log('success');
+                console.log(data);
+                let newPicturesList = [];
+                for (let i = 0; i < data.length; i++) {
+                    let obj = {};
+                    obj.url = './images/' + data[i].filename;
+                    obj.filename = data[i].filename;
+                    // 短评？
+                    newPicturesList.push(obj);
                 }
+                app.pictures = newPicturesList;
+                //$('.main-show').append('<img src="' + data.msg.url + '">');
+                // $('.main-show').append('<div class="img"><img src="' + data.msg.url + '"></div>');
+                // addHander();
+                // } else {
+                //    console.log(false);
+                //  console.log(data);
+
+                //}
             },
             error: function() {
                 console.log('error');
@@ -49,9 +62,15 @@ function init() {
     //     $('form input').trigger('click');
 
     // });
-    $('form input').on('change', function() {
-        let name = $('form input').val();
+    $('.uploadinput').on('change', function() {
+        let name = $('.uploadinput').val();
+        console.log(name);
         $('.fileName').val(name.substring(name.lastIndexOf('\\'), name.length));
+    });
+    $('.page-menu ul li').on('click', function(e) {
+        // console.log($(this).find('a'));
+        // $(this).find('a').click();
+        // e.stopPropagation();
     });
     // $('.submit').click(function() {
     //     $('form button').trigger('click');

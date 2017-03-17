@@ -1,6 +1,6 @@
 Vue.component('photos', {
     template: '<div class="img">\
-    <img :src="src" :alt="imgName" title="猫" @click="check($event)">\
+     <img :src = "src" :alt="imgName" title="猫" @click = "check($event)" > \
     </div>',
     props: ['src', 'imgName'],
     data: function() {
@@ -45,7 +45,9 @@ Vue.component('photos', {
 Vue.component('show-img', {
     template: '<div class="show-img" v-if="seen">\
         <button class="close" @click="hide">&times;</button>\
+        <div>\
         <img :src="src">\
+        </div>\
     </div>',
     props: ['src', 'seen'],
     methods: {
@@ -61,19 +63,20 @@ Vue.component('uploadContent', {
             <button class="upload-button" @click="toggle">U</button>\
             <div class="upload-content" v-if="isVisible">\
                 <button class="selectFile" @click="selectFile">选择文件</button>\
-                <input type="text" readonly class="fileName" value="">\
+                <input type="text" readonly class="fileName">\
                 <button class="submit" @click.prevent="submit">确定</button>\
             </div>\
         </div>',
     props: ['src', 'seen'],
     data: function() {
         return {
-            isVisible: false
+            isVisible: false,
+            fileName: ''
         };
     },
     methods: {
         selectFile: function() {
-            $('form input').trigger('click');
+            $('.uploadinput').trigger('click');
         },
         submit: function() {
             $('form button').trigger('click');
@@ -87,6 +90,11 @@ Vue.component('uploadContent', {
             }
         },
 
+    },
+    watch: {
+        fileName: function(newValue) {
+            app.inputName = newValue;
+        }
     }
 
 });
@@ -95,6 +103,8 @@ var app = new Vue({
     data: {
         title: 'tips',
         isSeen: false,
+        inputName: '',
+        filename: '',
         pictures: [],
         // pictures: [
         //     { url: './images/8-health-benefits-of-having-a-cat-74280bfe4befb734b8ba3d73c991883d.jpg', filename: '猫' },

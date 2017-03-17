@@ -129,18 +129,71 @@ router.post('/images', multipart(), function(req, res) {
     //copy file
     fs.createReadStream(req.files.files.path).pipe(fs.createWriteStream(targetPath));
 
-    dbAddReadTimes(filename, true);
+    //dbAddReadTimes(filename, true);
     console.log('-----req.body---------');
     console.log(req.body);
     //return file url
     var imgfolder = 'public/images/';
-    res.json({
-        code: 200,
-        msg: {
-            url: 'http://' + req.headers.host + '/' + imgfolder + filename,
-
+    //----------------------
+    // 连接数据库
+    MongoClient.connect('mongodb://192.168.0.118:27017/express', function(err, db) {
+        if (err) {
+            throw err;
         }
+        var collection = db.collection('imgshowTimes');
+        // 
+        var addFileName = [];
+        var plusFileName = [];
+        var isHaveFileName = false;
+        // 查数据库中 图片显示次数的集合 的所有文档
+        collection.find().toArray(function(err, result) {
+            if (err) {
+                console.error(err);
+            }
+            //console.log(result);
+            console.log('1');
+            // 遍历结果，查找是否有 该文件名的数据
+            for (let i = 0; i < result.length; i++) {
+                if (result[i]['filename'] === filename) {
+                    isHaveFileName = true;
+                    // 找到的话 放到自增数组中准备自增操作
+                    plusFileName.push(filename);
+                } else {
+                    //没找到的话说明 没有该文件名的数据
+                    isHaveFileName == false;
+                }
+            }
+            console.log('2');
+            // 没有该文件名 则准备在数据库中增加该文件的数据
+            if (isHaveFileName == false) {
+                addFileName.push(filename);
+            }
+            //console.log(addFileName);
+            //console.log(plusFileName);
+            console.log('3');
+            // 读取新增数据列表数组，将成员增加到数据库中
+            for (let i = 0; i < addFileName.length; i++) {
+                console.log('insert start');
+                console.log(addFileName[i]);
+                db.collection('imgshowTimes').insert({ 'filename': addFileName[i], 'showTimes': 0 }, function(err) {
+                    console.log('insert ok');
+                    db.close();
+                });
+            }
+            dbShowAllFiles(res);
+            console.log('4');
+
+
+        });
     });
+    //----------------------
+    // res.json({
+    //     code: 200,
+    //     msg: {
+    //         url: 'http://' + req.headers.host + '/' + imgfolder + filename,
+
+    //     }
+    // });
     //console.log(targetPath);
     //res.sendFile(targetPath);
 });

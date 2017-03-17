@@ -15,10 +15,18 @@
         <div class="logo"><img src="" alt=""></div>
         <div class="page-menu">
             <ul>
-                <li><a href- "../index.html">主页</a></li>
-                <li class="active"><a href- "#">相册</a></li>
-                <li><a href- "#">博客</a></li>
-                <li><a href- "#">其他</a></li>
+                <a href="../index.html">
+                    <li>主页</li>
+                </a>
+                <a href="#">
+                    <li class="active">相册</li>
+                </a>
+                <a href="#">
+                    <li>博客</li>
+                </a>
+                <a href="#">
+                    <li>其他</li>
+                </a>
             </ul>
         </div>
     </div>
@@ -34,13 +42,15 @@
         </div>
 
         <show-img :src="showImgURL" :seen="isSeen"></show-img>
+
+
     </div>
 
+
     <form action="javascript:;" enctype='multipart/form-data' id="upload" method='post' class="hidden">
-        <input type="file" name="files" id="uploadinput">
+        <input type="file" name="files" class="uploadinput">
         <button>submit</button>
     </form>
-
 
 
 
