@@ -11,7 +11,9 @@ router.get('/', function(req, res) {
 router.get('/images/:what', function(req, res) {
     console.log('-----' + req.params.what);
     console.log(req.query);
-    if (req.query.filename) {
+    if (req.params.what === 'getImgData') {
+        dbShowAllFiles(res);
+    } else if (req.query.filename) {
         dbAddReadTimes(req.query.filename, false);
         dbShowAllFiles(res);
 

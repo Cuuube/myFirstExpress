@@ -1,6 +1,6 @@
 Vue.component('photos', {
     template: '<div class="img">\
-    <img :src="src" :alt="imgName" :title="imgName" @click="check($event)">\
+    <img :src="src" :alt="imgName" title="猫" @click="check($event)">\
     </div>',
     props: ['src', 'imgName'],
     data: function() {
@@ -19,6 +19,16 @@ Vue.component('photos', {
             $.get(url, function(data, status) {
                 console.log('success');
                 console.log(data);
+                //把返回资料整理，覆盖app.pictures
+                let newPicturesList = [];
+                for (let i = 0; i < data.length; i++) {
+                    let obj = {};
+                    obj.url = './images/' + data[i].filename;
+                    obj.filename = data[i].filename;
+                    // 短评？
+                    newPicturesList.push(obj);
+                }
+                app.pictures = newPicturesList;
             });
         },
         updatePictures: function() {
@@ -85,12 +95,13 @@ var app = new Vue({
     data: {
         title: 'tips',
         isSeen: false,
-        pictures: [
-            { url: './images/8-health-benefits-of-having-a-cat-74280bfe4befb734b8ba3d73c991883d.jpg', filename: '猫' },
-            { url: './images/cat-300572_960_720.jpg', filename: '猫' },
-            { url: './images/cat.jpeg', filename: '猫' },
-            { url: './images/01-cat-wants-to-tell-you-laptop.jpg', filename: '猫' },
-        ],
+        pictures: [],
+        // pictures: [
+        //     { url: './images/8-health-benefits-of-having-a-cat-74280bfe4befb734b8ba3d73c991883d.jpg', filename: '猫' },
+        //     { url: './images/cat-300572_960_720.jpg', filename: '猫' },
+        //     { url: './images/cat.jpeg', filename: '猫' },
+        //     { url: './images/01-cat-wants-to-tell-you-laptop.jpg', filename: '猫' },
+        // ],
         showImgURL: '',
 
     },
@@ -101,7 +112,7 @@ var app = new Vue({
         },
         pictures: function() {
             //刷新列表
-            console.log('图片列表更新了！')
+            console.log('图片列表更新了！');
         }
     },
     methods: {
@@ -120,3 +131,22 @@ var app = new Vue({
         }
     }
 });
+
+
+(function getImgData() {
+    let url = '/photos/images/getImgData?';
+    $.get(url, function(data, status) {
+        console.log('success');
+        console.log(data);
+        //把返回资料整理，覆盖app.pictures
+        let newPicturesList = [];
+        for (let i = 0; i < data.length; i++) {
+            let obj = {};
+            obj.url = './images/' + data[i].filename;
+            obj.filename = data[i].filename;
+            // 短评？
+            newPicturesList.push(obj);
+        }
+        app.pictures = newPicturesList;
+    });
+})();
