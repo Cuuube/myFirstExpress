@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: #000;
+}
+
+.main {
+  margin: 30px auto;
+  width: 720px;
+  overflow: hidden;
+}
+
+.flow {
+  position: relative;
+  margin: 8px;
+  width: 131.2px;
+  float: left;
+}
+
+.flow img {
+  width: 100%;
+  height: auto;
+}

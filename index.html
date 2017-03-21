@@ -22,6 +22,10 @@
             <!--<lista v-for="theOne in app" :value="theOne.appName"></lista>-->
         </ol>
         <my-ul :items="app"></my-ul>
+        <btn @add="addTimes"></btn>
+        <btn @add="addTimes"></btn>
+        <btn @add="addTimes"></btn>
+        <p>{{times}}</p>
         <input v-model="app[0].appName">
     </div>
 

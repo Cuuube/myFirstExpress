@@ -31,15 +31,16 @@ function init() {
                 //if (200 === data.code) {
                 console.log('success');
                 console.log(data);
-                let newPicturesList = [];
-                for (let i = 0; i < data.length; i++) {
-                    let obj = {};
-                    obj.url = './images/' + data[i].filename;
-                    obj.filename = data[i].filename;
-                    // 短评？
-                    newPicturesList.push(obj);
-                }
-                app.pictures = newPicturesList;
+                app.ajaxData = data;
+                // let newPicturesList = [];
+                // for (let i = 0; i < data.length; i++) {
+                //     let obj = {};
+                //     obj.url = './images/' + data[i].filename;
+                //     obj.filename = data[i].filename;
+                //     // 短评？
+                //     newPicturesList.push(obj);
+                // }
+                // app.pictures = newPicturesList;
                 //$('.main-show').append('<img src="' + data.msg.url + '">');
                 // $('.main-show').append('<div class="img"><img src="' + data.msg.url + '"></div>');
                 // addHander();

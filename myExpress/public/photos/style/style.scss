@@ -1,3 +1,5 @@
+// $leftBarBackColor: #808080;
+$leftBarBackColor: #ccc;
 * {
     margin: 0;
     padding: 0;
@@ -23,32 +25,51 @@ body {
     position: absolute;
     width: 150px;
     height: 100%;
-    background: lightgray;
-    // box-shadow: 0px 0px 5px #999;
+    background: $leftBarBackColor;
+    box-shadow: 0px 0px 9px #555;
     z-index: 10;
     .logo {
         width: 100%;
-        height: 80px;
+        height: 112.5px;
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
     .page-menu {
         width: 100%;
         li {
             box-sizing: border-box;
             height: 50px;
+            //font-family: '幼圆';
             text-align: center;
             line-height: 50px;
-            background: #999;
+            background: $leftBarBackColor;
             cursor: pointer;
-            color: #000;
+            color: #fff;
             &:hover {
-                background: darken(#999, 10%);
-                color: #fff;
+                background: lighten($leftBarBackColor, 10%);
+                color: #8ccfea;
             }
         }
         .active {
-            border-left: 5px solid #000 !important;
-            background: darken(#999, 10%);
-            color: #fff;
+            border-left: 5px solid #333 !important;
+            background: lighten($leftBarBackColor, 10%);
+            color: #8ccfea;
+        }
+    }
+    .copyright {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 35px;
+        background: #808080;
+        text-align: center;
+        span {
+            line-height: 35px;
+            font-size: 12px;
+            color: #ccc;
         }
     }
 }
@@ -58,17 +79,20 @@ body {
     margin-left: 150px;
     height: 100%;
     overflow: auto;
+    background: #fafafa;
     .main-show {
         box-sizing: border-box;
         padding: 10px;
         height: 100%;
         box-shadow: 3px 3px 3px #eee;
+        background: transparent;
         .img {
             display: inline-block;
             margin: 10px 15px;
             padding: 10px;
             height: 80px;
-            box-shadow: 0px 0px 5px #eee;
+            background: #fff;
+            box-shadow: 0px 0px 5px #bbb;
             border-radius: 3px;
             img {
                 width: auto;
@@ -80,25 +104,28 @@ body {
     .upload-button {
         position: absolute;
         right: 10px;
-        top: 10px;
+        bottom: 10px;
         width: 30px;
         height: 30px;
         line-height: 30px;
-        background: #fff;
+        color: #fff;
+        background: $leftBarBackColor;
         border: none;
-        box-shadow: 0 0 3px #eee;
+        box-shadow: 0 0 3px #999;
+        border-radius: 3px;
     }
     .upload-content {
         box-sizing: border-box;
         position: absolute;
         right: 10px;
-        top: 50px;
+        bottom: 50px;
         padding: 10px;
         width: 150px;
         height: 80px;
-        background: #fff;
+        color: #fff;
+        background: #fafafa;
         border-radius: 5px;
-        box-shadow: 2px 2px 8px #eee;
+        box-shadow: 2px 2px 8px #999;
         z-index: 100;
         .selectFile {
             display: block;
@@ -111,7 +138,7 @@ body {
             height: 20px;
             overflow: hidden;
             border: none;
-            background: #fff;
+            background: transparent;
         }
         .submit {
             position: absolute;
@@ -134,7 +161,7 @@ body {
         height: 80%;
         border-radius: 9px;
         background: #fff;
-        box-shadow: 5px 5px 15px #ddd;
+        box-shadow: 1px 1px 15px #aaa;
         z-index: 999;
         button {
             position: absolute;

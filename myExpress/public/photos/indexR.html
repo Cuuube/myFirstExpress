@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>photos</title>
+    <link rel="stylesheet" type="text/css" href="./style/styleR.css">
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="title"></div>
+        <div class="flow">
+            <photos v-for="picture in pictureList" :src="picture.url" :img-name="picture.filename" @check="getViewURL" @addReadTimes="updatePictures"></photos>
+        </div>
+        <div class="flow"></div>
+        <div class="flow"></div>
+        <div class="flow"></div>
+        <div class="flow"></div>
+    </div>
+
+
+    <div class="right-content" id="photoApp">
+
+        <upload-content @send-input-name="changeInputName"></upload-content>
+
+
+        <div class="main-show">
+
+            <photos v-for="picture in pictureList" :src="picture.url" :img-name="picture.filename" @check="getViewURL" @addReadTimes="updatePictures"></photos>
+
+        </div>
+
+        <show-img :src="showImgURL" :seen="isSeen" @hideme="hideShowDiv"></show-img>
+
+
+    </div>
+
+
+    <form action="javascript:;" enctype='multipart/form-data' id="upload" method='post' class="hidden">
+        <input type="file" name="files" class="uploadinput">
+        <button>submit</button>
+    </form>
+
+
+
+
+</body>
+<script type="text/javascript" src='./js/vue.js'></script>
+<script type="text/javascript" src="../javascripts/jquery-3.1.1.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+<script type="text/javascript" src='./js/myVue.js'></script>
+
+</html>

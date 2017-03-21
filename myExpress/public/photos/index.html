@@ -12,7 +12,7 @@
 
 <body>
     <div class="left-menu">
-        <div class="logo"><img src="" alt=""></div>
+        <div class="logo"><img src="/public/images/kettle.jpg" alt="logo"></div>
         <div class="page-menu">
             <ul>
                 <a href="../index.html">
@@ -29,19 +29,20 @@
                 </a>
             </ul>
         </div>
+        <div class="copyright"><span>&copy;copyright zxod</span></div>
     </div>
     <div class="right-content" id="photoApp">
 
-        <upload-content></upload-content>
+        <upload-content @send-input-name="changeInputName"></upload-content>
 
 
         <div class="main-show">
 
-            <photos v-for="picture in pictures" :src="picture.url" :img-name="picture.filename"></photos>
+            <photos v-for="picture in pictureList" :src="picture.url" :img-name="picture.filename" @check="getViewURL" @addReadTimes="updatePictures"></photos>
 
         </div>
 
-        <show-img :src="showImgURL" :seen="isSeen"></show-img>
+        <show-img :src="showImgURL" :seen="isSeen" @hideme="hideShowDiv"></show-img>
 
 
     </div>

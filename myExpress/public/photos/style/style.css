@@ -18,13 +18,19 @@ body {
   position: absolute;
   width: 150px;
   height: 100%;
-  background: lightgray;
+  background: #ccc;
+  box-shadow: 0px 0px 9px #555;
   z-index: 10;
 }
 
 .left-menu .logo {
   width: 100%;
-  height: 80px;
+  height: 112.5px;
+}
+
+.left-menu .logo img {
+  width: 100%;
+  height: auto;
 }
 
 .left-menu .page-menu {
@@ -36,20 +42,36 @@ body {
   height: 50px;
   text-align: center;
   line-height: 50px;
-  background: #999;
+  background: #ccc;
   cursor: pointer;
-  color: #000;
+  color: #fff;
 }
 
 .left-menu .page-menu li:hover {
-  background: gray;
-  color: #fff;
+  background: #e6e6e6;
+  color: #8ccfea;
 }
 
 .left-menu .page-menu .active {
-  border-left: 5px solid #000 !important;
-  background: gray;
-  color: #fff;
+  border-left: 5px solid #333 !important;
+  background: #e6e6e6;
+  color: #8ccfea;
+}
+
+.left-menu .copyright {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 35px;
+  background: #808080;
+  text-align: center;
+}
+
+.left-menu .copyright span {
+  line-height: 35px;
+  font-size: 12px;
+  color: #ccc;
 }
 
 .right-content {
@@ -57,6 +79,7 @@ body {
   margin-left: 150px;
   height: 100%;
   overflow: auto;
+  background: #fafafa;
 }
 
 .right-content .main-show {
@@ -64,6 +87,7 @@ body {
   padding: 10px;
   height: 100%;
   box-shadow: 3px 3px 3px #eee;
+  background: transparent;
 }
 
 .right-content .main-show .img {
@@ -71,7 +95,8 @@ body {
   margin: 10px 15px;
   padding: 10px;
   height: 80px;
-  box-shadow: 0px 0px 5px #eee;
+  background: #fff;
+  box-shadow: 0px 0px 5px #bbb;
   border-radius: 3px;
 }
 
@@ -84,26 +109,29 @@ body {
 .right-content .upload-button {
   position: absolute;
   right: 10px;
-  top: 10px;
+  bottom: 10px;
   width: 30px;
   height: 30px;
   line-height: 30px;
-  background: #fff;
+  color: #fff;
+  background: #ccc;
   border: none;
-  box-shadow: 0 0 3px #eee;
+  box-shadow: 0 0 3px #999;
+  border-radius: 3px;
 }
 
 .right-content .upload-content {
   box-sizing: border-box;
   position: absolute;
   right: 10px;
-  top: 50px;
+  bottom: 50px;
   padding: 10px;
   width: 150px;
   height: 80px;
-  background: #fff;
+  color: #fff;
+  background: #fafafa;
   border-radius: 5px;
-  box-shadow: 2px 2px 8px #eee;
+  box-shadow: 2px 2px 8px #999;
   z-index: 100;
 }
 
@@ -119,7 +147,7 @@ body {
   height: 20px;
   overflow: hidden;
   border: none;
-  background: #fff;
+  background: transparent;
 }
 
 .right-content .upload-content .submit {
@@ -143,7 +171,7 @@ body {
   height: 80%;
   border-radius: 9px;
   background: #fff;
-  box-shadow: 5px 5px 15px #ddd;
+  box-shadow: 1px 1px 15px #aaa;
   z-index: 999;
 }
 

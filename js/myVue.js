@@ -16,6 +16,20 @@ Vue.component('my-ul', {
     props: ['items'],
 
 })
+Vue.component('btn', {
+    template: '<button @click="add">{{times}}</button>',
+    methods: {
+        add: function() {
+            this.times += 1;
+            this.$emit('add', this.times);
+        }
+    },
+    data: function() {
+        return {
+            times: 0,
+        }
+    }
+})
 var app2 = new Vue({
     el: '#app2',
     data: {
@@ -25,6 +39,7 @@ var app2 = new Vue({
             { appName: '微信' },
             { appName: '网易云' }
         ],
+        times: 0,
     },
     watch: {
         isSeen: function() {
@@ -38,6 +53,10 @@ var app2 = new Vue({
             } else {
                 this.isSeen = true;
             }
+        },
+        addTimes: function(data) {
+            this.times += 1;
+            console.log('该子组件的值为:' + data);
         }
     }
 });
