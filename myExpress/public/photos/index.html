@@ -6,34 +6,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>photos</title>
-    <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <!--<link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+    <link rel="stylesheet" type="text/css" href="./style/styleR.css">
 
 </head>
 
 <body>
-    <div class="left-menu">
-        <div class="logo"><img src="/public/images/kettle.jpg" alt="logo"></div>
-        <div class="page-menu">
-            <ul>
-                <a href="../index.html">
-                    <li>主页</li>
-                </a>
-                <a href="#">
-                    <li class="active">相册</li>
-                </a>
-                <a href="#">
-                    <li>博客</li>
-                </a>
-                <a href="#">
-                    <li>其他</li>
-                </a>
+    <div id="photoApp">
+        <header>
+            <div class="center">
+
+                <div class="nav">
+                    <div class="logo"><img src="../images/icons/fakelogo.png" alt="logo"></div>
+                    <ul class="navbar">
+                        <li>
+                            <a href="">主页</a>
+                        </li>
+                        <li class="active">
+                            <a href="">相册</a>
+                        </li>
+                        <li>
+                            <a href="">博客</a>
+                        </li>
+                        <li>
+                            <a href="">作品</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar pull-right">
+                        <li class="users">
+                            <img src="../images/01-cat-wants-to-tell-you-laptop.jpg" alt="user">
+                        </li>
+                        <li class="search">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <div class="neck">
+            <ul class="neck-nav">
+                <li class="sort-father">
+                    <a class="sort">Sort</a>
+                    <ul class="neck-nav-menu">
+                        <li @click="sortByPopular('up')">upstairs</li>
+                        <li @click="sortByPopular('down')">downstairs</li>
+                    </ul>
+                </li>
+
+                <li><a>Shots</a>
+                    <!--<ul class="neck-nav-menu">
+                        <li>待用</li>
+                        <li>待用</li>
+                        <li>待用</li>
+                    </ul>-->
+                </li>
+                <li class="dosth-father">
+                    <a class="dosth">Do</a>
+                    <ul class="neck-nav-menu">
+                        <li @click="showUpload">上传图片</li>
+                        <li>待用</li>
+                        <li>其他功能</li>
+                    </ul>
+                </li>
             </ul>
         </div>
-        <div class="copyright"><span>&copy;copyright zxod</span></div>
+
+        <div class="main">
+            <div class="container">
+                <ul class="group">
+
+                    <!--<li>
+                    <div class="box">
+                        <div class="picture-box">
+                            <img src="../images/01-cat-wants-to-tell-you-laptop.jpg" alt="">
+                            <div class="picture-content">
+                                <h4 class="picture-title">The Picture</h4>
+                                <p class="picture-introduction">This is a beauitiful picture.</p>
+                                <span class="picture-uploadTime">May 1st, 2017</span>
+                            </div>
+                        </div>
+                        <ul class="extra">
+                            <li><span class="views">403</span></li>
+                            <li><span class="cmnt">9</span></li>
+                            <li><span class="fav">3</span></li>
+                        </ul>
+                    </div>
+                    <div class="picture-header">
+                        <a href="#" class="picture-author">Tom</a>
+                    </div>
+                </li>-->
+
+                    <photos v-for="picture in pictureList" :img-data="picture" @check="getViewURL" @addtimes="updatePictures"></photos>
+
+                </ul>
+            </div>
+
+
+
+
+
+        </div>
+        <footer>
+            <div>
+                <h1>
+                    <img src="../images/icons/fakelogo.png" alt="logo" :class="{logo:true,boom:boom}" @mouseenter="boom=true" @mouseleave="boom=false">
+                    <p>图片总浏览次数：<span>{{totleWatchedTimes}}</span></p>
+                </h1>
+                <h2>Thanks for everybody.</h2>
+                <p>一个简单的相册软件</p>
+                <p>拥有阅览、上传功能</p>
+                <h2>软件支持：</h2>
+                <ul>
+                    <li><img src="../images/icons/expresslogo.png" title="Express" alt="support-logo"></li>
+                    <li><img src="../images/icons/logo-mongodb.png" title="Mongodb" alt="support-logo"></li>
+                    <li><img src="../images/icons/vuelogo.png" title="Vue" alt="support-logo"></li>
+                    <li><img src="../images/icons/jquerylogo.png" title="jQuery" alt="support-logo"></li>
+                </ul>
+                <div class="copyright">&copy; copyright zxod@foxmail.com</div>
+
+            </div>
+
+        </footer>
+
+        <!--<div class="show-picture-screen">
+        <div class="show-picture-container">
+            <button class="close">&times;</button>
+            <div class="show-picture-center">
+                <div class="picture-info">
+                    <div class="uploader"><img src="../images/01-cat-wants-to-tell-you-laptop.jpg" alt=""></div>
+                    <h3>Picture Header</h3>
+                    <p>by <span>Tom</span> on <span class="uploadDate">May 1st, 2016</span></p>
+                </div>
+                <div class="picture-watch">
+                    <img src="../images/01-cat-wants-to-tell-you-laptop.jpg" alt="cat">
+                </div>
+            </div>
+        </div>
+    </div>-->
+        <transition name="slide-fade">
+            <show-img :img-data="showImgData" v-if="isSeen" @hideme="hideShowDiv"></show-img>
+        </transition>
+        <!--<div class="upload-container">
+            <div class="upload-header">
+                <h1>Upload</h1>
+                <button class="close">&times;</button>
+            </div>
+            <form action="javascript:;" enctype='multipart/form-data' id="upload" method='post' class="hidden">
+                <div class="upload-body">
+                    <table>
+                        <tr>
+                            <td><label>图片名：</label></td>
+                            <td><input type="text" name="imgTitle"></td>
+                        </tr>
+                        <tr>
+                            <td><label>图片介绍：</label></td>
+                            <td><input type="text" name="intro"></td>
+                        </tr>
+                        <tr>
+                            <td><label>选择图片：</label></td>
+                            <td><input type="file" name="files" class="uploadinput"></td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit">提交</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+
+        </div>-->
+        <transition name="fade">
+            <upload-content v-if="isVisible" @hideme="hideUpload"></upload-content>
+        </transition>
+        <!--<div class="main">
+        <div class="title"></div>
+        <div class="flow">
+            <photos v-for="picture in pictureList" :src="picture.url" :img-name="picture.filename" @check="getViewURL" @addReadTimes="updatePictures"></photos>
+        </div>
+        <div class="flow"></div>
+        <div class="flow"></div>
+        <div class="flow"></div>
+        <div class="flow"></div>
     </div>
+
+
     <div class="right-content" id="photoApp">
 
-        <upload-content @send-input-name="changeInputName"></upload-content>
+        
 
 
         <div class="main-show">
@@ -46,21 +205,23 @@
 
 
     </div>
+-->
+        <!--<upload-content @send-input-name="changeInputName"></upload-content>
+        <form action="javascript:;" enctype='multipart/form-data' id="upload" method='post' class="hidden">
+            <input type="file" name="files" class="uploadinput">
+            <button>submit</button>
+        </form>-->
 
 
-    <form action="javascript:;" enctype='multipart/form-data' id="upload" method='post' class="hidden">
-        <input type="file" name="files" class="uploadinput">
-        <button>submit</button>
-    </form>
 
-
-
-
+    </div>
 </body>
 <script type="text/javascript" src='./js/vue.js'></script>
 <script type="text/javascript" src="../javascripts/jquery-3.1.1.min.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
+<!--<script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
 <script type="text/javascript" src="./js/index.js"></script>
 <script type="text/javascript" src='./js/myVue.js'></script>
+
 
 </html>

@@ -17,6 +17,7 @@
     "serve-favicon": "~2.3.2"
   },
   "devDependencies": {
+    "bootstrap": "^3.3.7",
     "cz-conventional-changelog": "^2.0.0"
   },
   "config": {

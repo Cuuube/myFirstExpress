@@ -6,23 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>photos</title>
-    <link rel="stylesheet" type="text/css" href="./style/styleR.css">
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
 
 </head>
 
 <body>
-    <div class="main">
-        <div class="title"></div>
-        <div class="flow">
-            <photos v-for="picture in pictureList" :src="picture.url" :img-name="picture.filename" @check="getViewURL" @addReadTimes="updatePictures"></photos>
+    <div class="left-menu">
+        <div class="logo"><img src="/public/images/kettle.jpg" alt="logo"></div>
+        <div class="page-menu">
+            <ul>
+                <a href="../index.html">
+                    <li>主页</li>
+                </a>
+                <a href="#">
+                    <li class="active">相册</li>
+                </a>
+                <a href="#">
+                    <li>博客</li>
+                </a>
+                <a href="#">
+                    <li>其他</li>
+                </a>
+            </ul>
         </div>
-        <div class="flow"></div>
-        <div class="flow"></div>
-        <div class="flow"></div>
-        <div class="flow"></div>
+        <div class="copyright"><span>&copy;copyright zxod</span></div>
     </div>
-
-
     <div class="right-content" id="photoApp">
 
         <upload-content @send-input-name="changeInputName"></upload-content>
