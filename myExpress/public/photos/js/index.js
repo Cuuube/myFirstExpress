@@ -1,4 +1,1 @@
-function init() {
-
-}
-init();
+// console.log(prompt());

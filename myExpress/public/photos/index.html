@@ -176,7 +176,7 @@
 
         </div>-->
         <transition name="fade">
-            <upload-content v-if="isVisible" @hideme="hideUpload"></upload-content>
+            <upload-content v-show="isVisible" @hideme="hideUpload" @senddata="updatePictures"></upload-content>
         </transition>
         <!--<div class="main">
         <div class="title"></div>
@@ -218,7 +218,8 @@
 </body>
 <script type="text/javascript" src='./js/vue.js'></script>
 <script type="text/javascript" src="../javascripts/jquery-3.1.1.min.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript" src="./js/jquery.ajax-progress.js"></script>
+<!--<script src="http://malsup.github.com/jquery.form.js"></script>-->
 <!--<script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
 <script type="text/javascript" src="./js/index.js"></script>
 <script type="text/javascript" src='./js/myVue.js'></script>

@@ -536,6 +536,7 @@ footer .copyright {
   border: none;
   color: #bbbbbb;
   font-size: 50px;
+  z-index: 10;
   cursor: pointer;
 }
 
@@ -639,6 +640,7 @@ footer .copyright {
   right: 0;
   height: 50px;
   background: #333333;
+  z-index: 10;
 }
 
 .upload-container .upload-header h1 {
@@ -671,6 +673,26 @@ footer .copyright {
   margin-top: 50px;
 }
 
+.upload-container form .upload-body table {
+  position: relative;
+}
+
+.upload-container form .upload-body table .picturePre {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+}
+
+.upload-container form .upload-body table .picturePre img {
+  height: 100%;
+  width: auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 .upload-container label {
   display: block;
   padding: 10px 15px;
@@ -689,6 +711,16 @@ footer .copyright {
 .upload-container button[type=submit]:hover {
   background: #23a2cd;
   transition: background 0.7s;
+}
+
+.upload-container #uploadprogress {
+  display: block;
+  position: absolute;
+  top: 48px;
+  left: -2px;
+  transform: translateY(-40%);
+  width: 445px;
+  border-radius: 0;
 }
 
 .liked {

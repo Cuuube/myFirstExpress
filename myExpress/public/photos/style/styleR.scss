@@ -468,6 +468,7 @@ footer {
             border: none;
             color: #bbbbbb;
             font-size: 50px;
+            z-index: 10;
             cursor: pointer;
             &:hover {
                 color: #eeeeee;
@@ -554,6 +555,7 @@ footer {
         right: 0;
         height: 50px;
         background: #333333;
+        z-index: 10;
         h1 {
             color: #ffffff;
             line-height: 50px;
@@ -580,6 +582,26 @@ footer {
     }
     form {
         margin-top: 50px;
+        .upload-body {
+            table {
+                position: relative;
+                .picturePre {
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    width: 90px;
+                    height: 90px;
+                    overflow: hidden;
+                    //text-align: center;
+                    img {
+                        height: 100%;
+                        width: auto;
+                        margin-left: 50%;
+                        transform: translateX(-50%);
+                    }
+                }
+            }
+        }
     }
     label {
         display: block;
@@ -597,6 +619,15 @@ footer {
             background: #23a2cd;
             transition: background 0.7s;
         }
+    }
+    #uploadprogress {
+        display: block;
+        position: absolute;
+        top: 48px;
+        left: -2px;
+        transform: translateY(-40%);
+        width: 445px;
+        border-radius: 0;
     }
 }
 
