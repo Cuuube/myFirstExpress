@@ -34,7 +34,7 @@
                     </ul>
                     <ul class="navbar pull-right">
                         <li class="users">
-                            <img src="../images/01-cat-wants-to-tell-you-laptop.jpg" alt="user">
+                            <img src="../images/heads/8.png" alt="user">
                         </li>
                         <li class="search">
                             <input type="text" class="form-control" placeholder="Search">
@@ -97,8 +97,9 @@
                     </div>
                 </li>-->
 
-                    <photos v-for="picture in pictureList" :img-data="picture" @check="getViewURL" @addtimes="updatePictures"></photos>
+                    <photos v-for="picture in pictureList" :img-data="picture" @check="getViewURL" @addtimes="updatePictures" @hideloading="hideLoading"></photos>
 
+                    <div class="loadingScreen" v-if="loadingScreen"></div>
                 </ul>
             </div>
 

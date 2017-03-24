@@ -107,6 +107,7 @@ function dbAddReadTimes(filename) {
         //-----使存在的文件阅读次数加1------------
         console.log('执行自增一');
         db.collection('imgshowTimes').update({ 'filename': filename }, { $inc: { 'showTimes': 1 } }, 0, 1);
+        db.close();
 
         // // 查数据库中 图片显示次数的集合 的所有文档
         // collection.find().toArray(function(err, result) {
@@ -171,7 +172,7 @@ function addDataToDb(data, res) {
                     for (let i = 0; i < result.length; i++) {
                         if (result[i]['filename'] === val.filename) {
                             isHaveFileName = true;
-                            // 找到的话 放到自增数组中准备自增操作
+                            // 找到的话 说明存在，无操作
                         }
                     }
                     isHaveFileName ? null : addFileName.push(val);
@@ -183,19 +184,11 @@ function addDataToDb(data, res) {
                 for (let i = 0; i < result.length; i++) {
                     if (result[i]['filename'] === data.filename) {
                         isHaveFileName = true;
-                        // 找到的话 放到自增数组中准备自增操作
+                        // 找到的话 说明存在，无操作
                     }
                 }
                 isHaveFileName ? null : addFileName.push(data);
             }
-
-            // for (let i = 0; i < result.length; i++) {
-            //     if (result[i]['filename'] === obj.filename) {
-            //         isHaveFileName = true;
-            //         // 找到的话 放到自增数组中准备自增操作
-            //         plusFileName.push(obj.filename);
-            //     }
-            // }
             console.log('新增条目判明成功，以下是要新增的条目：');
             console.log(addFileName);
             // 没有该文件名 则准备在数据库中增加该文件的数据
@@ -203,7 +196,7 @@ function addDataToDb(data, res) {
                 addFileToDb(addFileName, db, res);
             }
             setTimeout(() => dbShowAllFiles(res), 100);
-            //db.close();
+            db.close();
         });
     });
 
@@ -224,6 +217,7 @@ function dbShowAllFiles(res) {
                 console.error(err);
             }
             console.log('获取ok');
+            db.close();
             res.status(200).send(result);
         });
     });

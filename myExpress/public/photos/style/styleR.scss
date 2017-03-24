@@ -232,6 +232,13 @@ nav {
             width: 480px;
         }
     }
+    .loadingScreen {
+        width: 100%;
+        height: 200px;
+        background-image: url('../../images/icons/loading.gif');
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
 }
 
 .group {

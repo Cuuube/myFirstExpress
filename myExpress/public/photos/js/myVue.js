@@ -88,7 +88,10 @@ Vue.component('photos', {
                 console.log('输送数据更新！');
                 This.$emit('addtimes', data);
             });
-        }
+        },
+        hideloading: function() {
+            this.$emit('hideloading');
+        },
 
     },
     computed: {
@@ -97,6 +100,20 @@ Vue.component('photos', {
             return filename.substring(filename.lastIndexOf('/') + 1, filename.length);
         }
     },
+    // beforeCreate: function() {
+    //     console.log('图片列表创建了');
+    // },
+    mounted: function() {
+        console.log('图片已经准备好了');
+        this.hideloading();
+        //app.hideLoading();
+    },
+    // beforeUpdate: function() {
+    //     console.log('图片更新前');
+    // },
+    // updated: function() {
+    //     console.log('图片更新后');
+    // },
 });
 
 Vue.component('show-img', {
@@ -380,6 +397,7 @@ var app = new Vue({
         showImgURL: '',
         showImgData: {},
 
+        loadingScreen: true,
         boom: false,
 
     },
@@ -455,6 +473,12 @@ var app = new Vue({
         blink: function() {
             this.isVisible = false;
             setTimeout(() => this.isVisible = true, 150);
+        },
+        showLoading: function() {
+            this.loadingScreen = true;
+        },
+        hideLoading: function() {
+            this.loadingScreen = false;
         },
         // 改变输入名称，暂时没用到
         changeInputName: function(data) {
@@ -571,6 +595,7 @@ var app = new Vue({
         let url = '/photos/images/getImgData?',
             This = this;
         console.log('ready!');
+        //this.showLoading();
         $.get(url, function(data, status) {
             console.log('success');
             console.log(data);
@@ -583,7 +608,11 @@ var app = new Vue({
             //     // 短评？
             //     newPicturesList.push(obj);
             // }
-            This.ajaxData = data;
+
+            // 随机做一个延迟，给loading屏幕显示时间（!!测试用）
+            let ranDelay = Math.floor(500 + 1000 * Math.random());
+            setTimeout(() => This.ajaxData = data, ranDelay);
+
 
         });
     },
